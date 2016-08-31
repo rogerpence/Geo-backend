@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    {% block head_end_scripts%}{% endblock %}   
+</head>
+<body>
+{% block body %}{% endblock %}    
+</body>
+{% if debug %}
+    debug on
+{% else %}
+    debug off
+{% endif %}
+{% block body_end_scripts%}{% endblock %}   
+</html>
