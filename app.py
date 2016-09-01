@@ -1,7 +1,11 @@
 from flask import Flask
 from flask_restful import Resource, Api
 from flask_script import Manager, Server
-from resources.foo import Foo 
+from resources.foo import Foo
+from pymongo import MongoClient
+
+client = MongoClient()
+db = client.rpdb
 
 app = Flask(__name__)
 api = Api(app)
@@ -12,13 +16,7 @@ app.config['DEBUG'] = None
 manager = Manager(app)
 manager.add_command("runserver", Server(host='0.0.0.0'))
 
-# class HelloWorld(Resource):
-#     def get(self):
-#         return {'hello': 'world'}
-
-# api.add_resource(HelloWorld, '/api')
-
-api.add_resource(Foo, '/Foo' )
+api.add_resource(Foo, '/Foo', resource_class_kwargs={'db': db}) 
 
 from main import main as main_blueprint
 # url_prefix is unnecessary in this case but provided for clarity.

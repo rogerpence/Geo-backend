@@ -14,5 +14,7 @@
 {% else %}
     debug off
 {% endif %}
+<script src="{{ url_for('static', filename='js/vendor/jquery/jquery-3.1.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
 {% block body_end_scripts%}{% endblock %}   
 </html>
