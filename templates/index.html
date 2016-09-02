@@ -2,7 +2,22 @@
 
 {% block body %}
     <div>
-        Hello from index.html
+        Hello from index.html<br>
+        <a href='#' id='start-button'>Start</a>
         <br>
     </div>
+{% endblock %}
+
+{% block body_end_scripts %}
+<script>
+    $(function() {
+        var startButton = document.querySelector('#start-button');
+
+        startButton.addEventListener('click', function() {
+            rp.main.postGeoLocation();       
+        }, false);
+    })
+
+</script>
+
 {% endblock %}
