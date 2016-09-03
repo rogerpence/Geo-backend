@@ -11,7 +11,7 @@ rp.getGeoLocationManager = function() {
         longitude: 0,
         previousLatitude: 0,
         previousLongitude: 0,
-        timeCaptured: ''        
+        captured_at: ''        
     }
 
     function captureGeoLocation() {
@@ -40,7 +40,7 @@ rp.getGeoLocationManager = function() {
             geoPosition.longitude = Number.parseFloat(position.coords.longitude.toFixed(7));
         }
 
-        geoPosition.timeCaptured = new Date(position.timestamp).toISOString();
+        geoPosition.captured_at = new Date(position.timestamp).toISOString();
 
         this.options.captureCallback(geoPosition);
 

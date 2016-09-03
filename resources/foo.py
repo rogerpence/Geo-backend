@@ -16,7 +16,7 @@ class Foo(Resource):
         g = {"routeid": 492,
              "latitude": 25.6, 
              "longitude": -98.567,
-             "captured_at": "2016-08-31T21:01:47.894512"}
+             "timeCaptured": "2016-08-31T21:01:47.894512"}
 
         msg = dbio.addGeoLocation(self.db, g)
 

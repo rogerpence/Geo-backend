@@ -3,18 +3,69 @@
 {% block body %}
     <div>
         Hello from index.html<br>
+        <br>
+        <br>
+        <br>
         <a href='#' id='start-button'>Start</a>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href='#' id='stop-button'>Stop</a>
+        <br>
+        <br>
+        <br>
+        <span class='time-captured'></span>
         <br>
     </div>
 {% endblock %}
 
 {% block body_end_scripts %}
 <script>
+    var options = {
+        captureSecondsInterval: 10,
+        captureCallback: getLocationCaptured,
+        emulateMovement: false, 
+        captureId: null
+    }        
+
+    function getLocationCaptured(position, counter) {
+        var data = {
+            "routeid": 34567,
+            "latitude": "29.6537893",
+            "longitude": "-91.5678932",
+            "captured_at": "2016-08-31T21:01:47.894512"
+        };
+        data.latitude = position.latitude;
+        data.longitude = position.longitude;
+        data.captured_at = position.captured_at;
+            
+        rp.main.sendGeoLocation(data);     
+        $('.time-captured').html(position.captured_at);
+    }       
+
+    var data = {
+        "routeid": 34567,
+        "latitude": "29.6537893",
+        "longitude": "-91.5678932",
+        "captured_at": "2016-08-31T21:01:47.894512"
+    };
+
     $(function() {
         var startButton = document.querySelector('#start-button');
 
         startButton.addEventListener('click', function() {
-            rp.main.postGeoLocation();       
+            rp.getGeoLocationManager.startGeoLocationCapture(options)
+            $('.time-captured').html('');
+            alert('started');
+        }, false);
+
+        var stopButton = document.querySelector('#stop-button');
+
+        stopButton.addEventListener('click', function() {
+            clearInterval(options.captureId);
+            $('.time-captured').html('');
+            alert('stopped');
         }, false);
     })
 

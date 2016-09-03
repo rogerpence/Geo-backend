@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">  
     {% block head_end_scripts%}{% endblock %}   
 </head>
 <body>
@@ -16,5 +16,6 @@
 {% endif %}
 <script src="{{ url_for('static', filename='js/vendor/jquery/jquery-3.1.0.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+<script src="{{ url_for('static', filename='js/geowatcher.js') }}"></script>
 {% block body_end_scripts%}{% endblock %}   
 </html>
