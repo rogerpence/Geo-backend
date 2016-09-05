@@ -11,6 +11,7 @@ function makeRequest (method, url, done) {
         })
         .catch((err) => {
             console.error('Augh, there was an error!', err.statusText);
+            alert(err.statusText);
         });        
     }       
 
